@@ -51,6 +51,8 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
 							userDetails, null, userDetails.getAuthorities());
 					authResult.setDetails(authenticationDetailsSource.buildDetails(request));
 					SecurityContextHolder.getContext().setAuthentication(authResult);
+				} else {
+					jwtTokenService.writeTokenToResponse(response, "");
 				}
 	    	}
     	}
