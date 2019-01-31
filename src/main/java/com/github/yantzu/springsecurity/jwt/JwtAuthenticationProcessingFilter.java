@@ -39,7 +39,7 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
     	if(!isLoggedIn()) {
     		// not logged in
-	    	String jwtToken = jwtTokenService.getTokenFromRequest(request);
+	    	String jwtToken = jwtTokenService.readTokenFromRequest(request);
 			if (StringUtils.isNotBlank(jwtToken)) { 
 				// have jwt cookie
 				JwtBody jwtBody = jwtTokenService.decodeAndVerifyToken(jwtToken);

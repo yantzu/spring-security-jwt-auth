@@ -79,7 +79,7 @@ public class JwtTokenService implements InitializingBean {
 		}
 	}
     
-	public String getTokenFromRequest(HttpServletRequest request) {
+	public String readTokenFromRequest(HttpServletRequest request) {
 		for (Cookie cookie : request.getCookies()) {
 			if (cookie.getName().equals(tokenCookieName)) {
 				return cookie.getValue();
