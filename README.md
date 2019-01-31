@@ -1,13 +1,13 @@
 # spring-security-jwt-auth
 1. add spring application config value
 ```
-	jwt.signer.keys={"eyJ":"hbGciOiJ","IUz":"I1NiIsIn","R5c":"CI6IkpXV","e3V":"zZXJuYW1"}
+	jwt.signerVerifier.keys={"eyJ":"hbGciOiJ","IUz":"I1NiIsIn","R5c":"CI6IkpXV","e3V":"zZXJuYW1"}
 ```
 2. create beans
 ```
 	@Bean
 	public JwtTokenService jwtTokenService() throws Exception {
-		String signerConfig = getApplicationContext().getEnvironment().getProperty("jwt.signer.keys");
+		String signerConfig = getApplicationContext().getEnvironment().getProperty("jwt.signerVerifier.keys");
 
 		TypeReference<HashMap<String, String>> typeRef = new TypeReference<HashMap<String, String>>() {
 		};
