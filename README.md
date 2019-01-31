@@ -1,4 +1,10 @@
 # spring-security-jwt-auth
+1. add spring application config value
+```
+	jwt.signer.keys={"eyJ":"hbGciOiJ","IUz":"I1NiIsIn","R5c":"CI6IkpXV","e3V":"zZXJuYW1"}
+```
+2. create beans
+```
 	@Bean
 	public JwtTokenService jwtTokenService() throws Exception {
 		String signerConfig = getApplicationContext().getEnvironment().getProperty("jwt.signer.keys");
@@ -51,3 +57,15 @@
 
         return getApplicationContext().getBean(userDetailsBeanNames[0], type);
     }
+```
+3. config bean 
+```
+http
+        ...
+        .and()
+	    .logout()
+	    .addLogoutHandler(getBeanOrThrowException(JwtLogoutHandler.class))
+            .permitAll()
+        .and()
+            .addFilterAfter(getBeanOrThrowException(JwtAuthenticationProcessingFilter.class), UsernamePasswordAuthenticationFilter.class);
+```
